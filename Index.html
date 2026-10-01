@@ -1,1 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KikiopeFoods | Order homemade Nigerian food</title>
+<meta name="description" content="Order fried rice, jollof rice, peppersoup, swallow and soups, chinchin and more from KikiopeFoods. Homemade, cooked with love. Closed on Sundays.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat+Brush&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --surface:#fff8dc;
+  --ink:#16110c;
+  --muted:#5e554a;
+  --line:#ece4c9;
+  --brand:#ffc42e;
+  --brand-ink:#16110c;
+  --red:#8a1424;
+  --green:#2f8f3a;
+  --night:#120d09;
+  --on-night:#ffffff;
+  --card:#ffffff;
+  --warn-bg:#fde7ea;
+  --warn-ink:#7a0f1d;
+  --display:'Baloo 2','Trebuchet MS','Segoe UI',system-ui,sans-serif;
+  --script:'Caveat Brush','Segoe Print','Bradley Hand',cursive;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#16110c;--surface:#241b12;--ink:#fff6dc;--muted:#c9bda3;--line:#3a2d1e;--red:#ff7b8a;--green:#6fd07a;--night:#0a0705;--card:#1d1610;--warn-bg:#3a1219;--warn-ink:#ffc2ca;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16110c;--surface:#241b12;--ink:#fff6dc;--muted:#c9bda3;--line:#3a2d1e;--red:#ff7b8a;--green:#6fd07a;--night:#0a0705;--card:#1d1610;--warn-bg:#3a1219;--warn-ink:#ffc2ca;
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--display);font-size:17px;line-height:1.45;-webkit-font-smoothing:antialiased;padding-bottom:96px}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 
+/* Hero */
+.hero{background:var(--night);color:var(--on-night);padding:26px 20px 34px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-70px;top:-70px;width:230px;height:230px;border-radius:50%;background:var(--brand);opacity:.12}
+.wrap{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.badge{display:inline-block;background:#000;border:3px solid var(--brand);border-radius:40px;padding:2px 22px 0;margin:0}
+.wordmark{font-weight:800;font-size:clamp(38px,11.5vw,64px);line-height:1.05;letter-spacing:-1px;margin:0}
+.wordmark span{color:var(--brand)}
+.trio{margin:8px 0 0;color:var(--brand);font-weight:600;font-size:14px;letter-spacing:.5px}
+.promise{display:inline-block;margin:22px 0 6px;background:var(--brand);color:var(--brand-ink);padding:8px 22px 6px;transform:rotate(-2deg);border-radius:6px 22px 8px 26px;font-family:var(--script);font-size:clamp(26px,7.5vw,38px);line-height:1.1}
+.promise em{font-style:normal;color:var(--red)}
+:root[data-theme="dark"] .promise em{color:#8a1424}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .promise em{color:#8a1424}}
+.lede{margin:12px 0 18px;max-width:36ch;color:#e9dfc8;font-size:18px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:6px 14px 4px;border-radius:999px;font-weight:700;font-size:15px;background:#1f3a22;color:#a8f0b0}
+.status::before{content:"";width:9px;height:9px;border-radius:50%;background:#46d35a;margin-top:-2px}
+.status.closed{background:#4a1520;color:#ffc2ca}
+.status.closed::before{background:#ff6678}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 24px;font-weight:700;font-size:17px;cursor:pointer;text-decoration:none;min-height:48px}
+.btn-primary{background:var(--brand);color:var(--brand-ink)}
+.btn-wa{background:#25d366;color:#07240f}
+.btn-ghost{background:transparent;color:inherit;border:2px solid currentColor}
+.btn-line{background:var(--bg);color:var(--ink);border:2px solid var(--ink)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn:active:not([disabled]){transform:scale(.98)}
+
+/* Closed banner */
+.closed-banner{background:var(--warn-bg);color:var(--warn-ink);padding:14px 20px;font-weight:700;text-align:center;display:none}
+.closed-banner.show{display:block}
+
+/* Category nav */
+.catnav{position:sticky;top:0;z-index:15;background:var(--bg);border-bottom:1px solid var(--line);padding:calc(8px + env(safe-area-inset-top,0px)) 16px 8px;overflow-x:auto;white-space:nowrap;display:flex;gap:8px;scrollbar-width:none}
+.catnav::-webkit-scrollbar{display:none}
+.catnav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px;padding:6px 16px 4px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.catnav a:hover{background:var(--brand);color:var(--brand-ink)}
+
+/* Menu */
+main{padding:0 16px 24px}
+.section{max-width:760px;margin:0 auto;padding-top:30px}
+.section h2{font-size:28px;line-height:1.1;margin:0 0 4px;font-weight:800}
+.section .note{margin:0 0 12px;color:var(--muted);font-size:15px}
+.items{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:12px}
+.item{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 14px 14px 16px}
+.thumb{width:76px;height:76px;border-radius:14px;object-fit:cover;display:block;background:var(--surface)}
+.thumb-svg{width:76px;height:76px;border-radius:14px;background:var(--surface);display:flex;align-items:center;justify-content:center}
+.thumb-svg svg{width:56px;height:56px}
+.body .name{font-weight:700;font-size:18px;line-height:1.15;margin:0}
+.body .desc{margin:2px 0 0;color:var(--muted);font-size:14px;line-height:1.25}
+.price{display:inline-block;margin-top:6px;font-weight:800;background:var(--brand);color:var(--brand-ink);padding:1px 12px 0;border-radius:999px;font-size:16px}
+.price.quote{background:transparent;color:var(--muted);font-weight:600;font-size:14px;padding:0}
+.act{display:flex;align-items:center}
+.add{border:2px solid var(--ink);background:var(--bg);color:var(--ink);border-radius:999px;min-width:76px;min-height:44px;padding:4px 16px;font-weight:800;cursor:pointer}
+.add[disabled]{opacity:.45;cursor:not-allowed;min-width:0;padding:4px 12px;font-size:14px}
+.step{display:inline-flex;align-items:center;border:2px solid var(--ink);border-radius:999px;background:var(--bg)}
+.step button{width:38px;height:40px;border:0;background:none;font-size:22px;font-weight:800;cursor:pointer;color:var(--ink)}
+.step span{min-width:20px;text-align:center;font-weight:800}
+.item.opts{grid-template-columns:1fr}
+.opts .chips{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.chip{border:2px solid var(--ink);background:var(--bg);color:var(--ink);border-radius:999px;min-height:42px;padding:3px 16px;font-weight:800;cursor:pointer}
+.chip.has{background:var(--green);border-color:var(--green);color:#fff}
+.chip[disabled]{opacity:.45;cursor:not-allowed}
+.photo-note{max-width:760px;margin:26px auto 0;color:var(--muted);font-size:13px}
+
+/* How it works */
+.how{background:var(--surface);margin-top:34px;padding:30px 20px}
+.how h2{max-width:760px;margin:0 auto;font-size:28px}
+.how ol{max-width:760px;margin:12px auto 0;padding-left:22px;font-size:18px}
+.how li{margin:8px 0}
+
+footer{background:var(--night);color:#e9dfc8;padding:30px 20px 40px}
+footer .wrap a{color:var(--brand);font-weight:700}
+.sign{font-family:var(--script);font-size:30px;color:var(--brand);margin:0 0 10px}
+footer p{margin:6px 0}
+
+/* Cart bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--night);border-top:3px solid var(--brand);display:none}
+.bar.show{display:block}
+.bar button{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--brand);color:var(--brand-ink);border:0;border-radius:999px;padding:12px 22px;font-weight:800;font-size:18px;min-height:52px;cursor:pointer}
+
+/* Order sheet */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:30;display:none}
+.scrim.show{display:block}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:40;max-height:94%;max-height:94dvh;overflow:auto;background:var(--bg);border-radius:24px 24px 0 0;padding:20px 20px calc(28px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .25s ease;visibility:hidden}
+.sheet.show{transform:none;visibility:visible}
+@media (min-width:700px){.sheet{left:50%;right:auto;width:580px;margin-left:-290px}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.sheet h2{margin:0;font-size:28px}
+.x{border:0;background:var(--surface);color:var(--ink);width:44px;height:44px;border-radius:50%;font-size:22px;cursor:pointer}
+.stephead{display:flex;align-items:center;gap:10px;margin:22px 0 6px;font-size:20px;font-weight:800}
+.stephead i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--brand);color:var(--brand-ink);font-size:15px}
+.line{padding:12px 0;border-bottom:1px solid var(--line)}
+.line-top{display:flex;align-items:center;gap:10px}
+.line .nm{flex:1;font-weight:600;line-height:1.2}
+.line .amt{font-weight:800;white-space:nowrap}
+.line textarea,.field input,.field textarea{width:100%;margin-top:6px;border:2px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--bg);font-size:16px}
+.field{margin-top:12px}
+.field label{font-weight:700;font-size:15px}
+.total{display:flex;justify-content:space-between;font-size:22px;font-weight:800;margin:14px 0 2px}
+.fine{color:var(--muted);font-size:14px;margin:4px 0 0}
+.pay{background:var(--night);color:#fff;border-radius:18px;padding:16px 18px;margin-top:8px}
+.pay .bank{color:var(--brand);font-weight:700;font-size:15px}
+.pay .acct{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:4px}
+.pay .num{font-size:30px;font-weight:800;letter-spacing:1.5px}
+.copy{background:var(--brand);color:var(--brand-ink);border:0;border-radius:999px;min-height:42px;padding:2px 18px;font-weight:800;cursor:pointer}
+.pay .hint{margin:8px 0 0;color:#e9dfc8;font-size:14px}
+.upload{display:block;margin-top:8px;border:2px dashed var(--ink);border-radius:16px;padding:16px;text-align:center;font-weight:700;cursor:pointer;background:var(--surface)}
+.upload input{position:absolute;opacity:0;width:1px;height:1px}
+.upload:focus-within{outline:3px solid var(--brand);outline-offset:2px}
+.preview{display:none;align-items:center;gap:12px;margin-top:10px}
+.preview.show{display:flex}
+.preview img{width:64px;height:64px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+.preview .fn{flex:1;font-size:14px;color:var(--muted);word-break:break-all}
+.preview button{border:0;background:none;color:var(--red);font-weight:800;cursor:pointer;min-height:40px}
+.err{color:#c0162b;font-weight:700;margin:12px 0 0;min-height:1.2em}
+:root[data-theme="dark"] .err{color:#ff7b8a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#ff7b8a}}
+.okmsg{background:var(--surface);border-radius:14px;padding:12px 14px;margin-top:12px;font-weight:600;display:none}
+.okmsg.show{display:block}
+.empty{padding:20px 0;color:var(--muted)}
+.actions{display:grid;gap:10px;margin-top:14px}
+.warn{background:var(--warn-bg);color:var(--warn-ink);border-radius:14px;padding:12px 14px;margin-top:12px;font-weight:700;display:none}
+.warn.show{display:block}
+.askbox{background:var(--surface);border-radius:14px;padding:12px 14px;margin-top:12px;font-size:15px;display:none}
+.askbox.show{display:block}
+
+/* Gallery */
+.gallery{max-width:760px;margin:0 auto;padding:30px 16px 0}
+.gallery h2{font-size:28px;line-height:1.1;margin:0 0 4px;font-weight:800}
+.gallery .note{margin:0 0 12px;color:var(--muted);font-size:15px}
+.gal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (min-width:600px){.gal-grid{grid-template-columns:repeat(3,1fr)}}
+.gal-tile{position:relative;padding:0;border:0;border-radius:16px;overflow:hidden;cursor:pointer;aspect-ratio:1/1;background:var(--surface);display:block}
+.gal-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.gal-tile span{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 8px;text-align:left;font-weight:700;font-size:15px;line-height:1.1;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.75))}
+.lightbox{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.92);display:none;flex-direction:column;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.lightbox.show{display:flex}
+.lightbox img{max-width:100%;max-height:70vh;max-height:70dvh;border-radius:14px;object-fit:contain}
+.lightbox .cap{color:#fff;font-weight:700;font-size:20px;margin:12px 0 4px;text-align:center}
+.lb-row{display:flex;gap:12px;margin-top:10px}
+.lb-btn{background:var(--brand);color:var(--brand-ink);border:0;border-radius:999px;min-height:46px;min-width:90px;padding:4px 18px;font-weight:800;cursor:pointer}
+.lb-close{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:12px;background:#fff;color:#000;border:0;width:44px;height:44px;border-radius:50%;font-size:22px;cursor:pointer}
+
+/* Ask for price */
+.ask-card{display:grid;grid-template-columns:1fr;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px}
+.ask-card .body .price.quote{margin-top:2px}
+.ask-links{grid-column:1 / -1;display:flex;gap:10px}
+.ask-links .btn{flex:1;min-height:44px;font-size:16px;padding:8px 12px}
+.btn-call{background:var(--bg);color:var(--ink);border:2px solid var(--ink)}
+.askpay{max-width:760px;margin:16px auto 0;background:var(--surface);border-radius:16px;padding:14px 16px;font-size:15px}
+
+/* Pay info block */
+.paybox{max-width:760px;margin:16px auto 0}
+.pay .who{margin:2px 0 0;font-weight:700;font-size:17px}
+
+.lbl{font-weight:700;font-size:15px;display:block}
+.seg{display:flex;gap:10px;margin-top:6px}
+.seg label{flex:1;position:relative}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:flex;align-items:center;justify-content:center;min-height:46px;border:2px solid var(--ink);border-radius:999px;font-weight:800;cursor:pointer;background:var(--bg)}
+.seg input:checked+span{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.seg input:focus-visible+span{outline:3px solid var(--brand);outline-offset:2px}
+.locbtn{width:100%;margin-top:10px;min-height:46px}
+.loc-ok{color:var(--green);font-weight:700}
+.loc-ok a{color:inherit}
+.music{position:fixed;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:25;background:var(--night);color:#fff;border:2px solid var(--brand);border-radius:999px;min-height:42px;padding:2px 16px 0;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.music.on::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#46d35a;margin-right:8px}
+.has-bar .music{bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+.subrow{display:flex;justify-content:space-between;color:var(--muted);font-weight:600;margin-top:8px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge"><h1 class="wordmark">KIKIOPE<span>FOODS</span></h1></div>
+    <p class="trio">Tasty &nbsp;·&nbsp; Fresh &nbsp;·&nbsp; Homemade</p>
+    <div class="promise">Delicious meals,<br><em>just for you!</em></div>
+    <p class="lede">Rice, soups, peppersoup and chinchin, cooked fresh at home. Choose your food, pay by transfer and send your order on WhatsApp.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#gallery">See our food</a>
+      <a class="btn btn-ghost" href="https://wa.me/2348127989911" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+    <div class="status" id="status">Open today</div>
+  </div>
+</header>
+
+<div class="closed-banner" id="closedBanner" role="status">We are closed on Sundays. Come back on Monday to place your order.</div>
+
+<nav class="catnav" aria-label="Menu sections">
+  <a href="#gallery">Gallery</a>
+  <a href="#rice">Rice</a>
+  <a href="#peppersoup">Peppersoup</a>
+  <a href="#meat">Fried meat</a>
+  <a href="#chinchin">Chinchin</a>
+  <a href="#askprice">Ask for price</a>
+</nav>
+
+<section class="gallery" id="gallery">
+  <h2>What we have cooked</h2>
+  <p class="note">Real meals from our kitchen. Tap a photo to see it bigger.</p>
+  <div class="gal-grid" id="galGrid"></div>
+</section>
+
+<main id="menu"></main>
+
+<section class="how">
+  <h2>How to order</h2>
+  <ol>
+    <li>Tap Add on the food you want, or message us for the meals without a price.</li>
+    <li>Open your order and fill in your name, phone and address.</li>
+    <li>Pay by transfer to our Opay account. There is no delivery fee inside Havila. Outside Havila, add ₦1,000 for the bike man.</li>
+    <li>Upload your payment screenshot and send the order on WhatsApp.</li>
+  </ol>
+  <div class="paybox">
+    <div class="pay">
+      <div class="bank">Opay account</div>
+      <p class="who">Omoniyi Ibironke Ojajuni</p>
+      <div class="acct"><span class="num">8127989911</span><button class="copy" type="button" data-copy="8127989911">Copy</button></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="sign">Homemade food, cooked with love</p>
+    <p>WhatsApp for orders: <a href="https://wa.me/2348127989911" target="_blank" rel="noopener">+234 812 798 9911</a></p>
+    <p>Call: <a href="tel:+2348127989911">+234 812 798 9911</a></p>
+    <p>Email: <a href="mailto:kikiopefoods@gmail.com">kikiopefoods@gmail.com</a></p>
+    <p>Open Monday to Saturday. Closed on Sundays.</p>
+    <p>Good food, happy people.</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close photo">×</button>
+  <img id="lbImg" alt="">
+  <div class="cap" id="lbCap"></div>
+  <div class="lb-row"><button class="lb-btn" id="lbPrev" type="button">Back</button><button class="lb-btn" id="lbNext" type="button">Next</button></div>
+</div>
+
+<button class="music" id="musicBtn" type="button" aria-pressed="true"><span id="musicTxt">Tap to play music</span></button>
+
+<div class="bar" id="bar"><button id="barBtn" type="button"><span id="barCount"></span><span id="barTotal"></span></button></div>
+<div class="scrim" id="scrim"></div>
+
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" aria-hidden="true">
+  <div class="sheet-head">
+    <h2 id="sheetTitle">Your order</h2>
+    <button class="x" id="closeBtn" type="button" aria-label="Close order">×</button>
+  </div>
+
+  <div class="warn" id="closedWarn">We are closed on Sundays, so orders cannot be sent today. Please come back on Monday.</div>
+
+  <div class="stephead"><i>1</i> Your food</div>
+  <div id="lines"></div>
+  <div class="subrow"><span>Food</span><span id="subAmt">₦0</span></div>
+  <div class="subrow" id="feeRow" hidden><span>Delivery fee (bike)</span><span id="feeAmt">₦1,000</span></div>
+  <div class="total"><span>Total</span><span id="sheetTotal">₦0</span></div>
+
+  <div class="stephead"><i>2</i> Your details</div>
+  <div class="field"><label for="fName">Your name</label><input id="fName" autocomplete="name"></div>
+  <div class="field"><label for="fPhone">Phone number</label><input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="08012345678"><p class="fine">A complete Nigerian number, for example 08012345678.</p></div>
